@@ -105,7 +105,7 @@ const Login = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-4 text-gray-400 hover:text-cyan-400 transition-colors"
+                    className="absolute right-3 top-2 text-gray-400 hover:text-cyan-400 transition-colors"
                   >
                     {showPassword ? (
                       <EyeOff className="w-5 h-5" />
@@ -126,11 +126,8 @@ const Login = () => {
                     />
                     <span className="text-gray-300 text-sm">Remember me</span>
                   </label>
-                  <a
-                    href="#"
-                    className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
-                  >
-                    Forgot Password?
+                  <a href="#" className="text-[#000]">
+                    <span className="text-white">Forgot Password?</span>
                   </a>
                 </div>
 
@@ -153,8 +150,8 @@ const Login = () => {
               <div className="text-center mt-6 pt-6 border-t border-white/10">
                 <p className="text-gray-300 text-sm">
                   Don't have an account?{" "}
-                  <a href="#" className="text-cyan-400 hover:underline">
-                    Sign Up
+                  <a href="#" className="text-white hover:underline">
+                    <span className="text-white">Sign Up</span>
                   </a>
                 </p>
               </div>
