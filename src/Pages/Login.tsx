@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { Mail, Lock, Eye, EyeOff, Globe } from "lucide-react";
+import React, { useMemo, useState } from "react";
+import { Mail, Lock, Eye, EyeOff, Globe, Search } from "lucide-react";
 import { GlobeDemo } from "../components/ChildUis/Globe";
+import CustomInput from "../components/CustomInput";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const GlobeBg = useMemo(() => GlobeDemo(), []);
 
   return (
     <div className="relative min-h-screen  w-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
@@ -26,7 +27,7 @@ const Login = () => {
         ))}
       </div>
 
-      <div className="flex w-full h-screen relative z-10">
+      <div className="flex flex-col sm:flex-row w-full h-screen relative z-10">
         {/* Left Section */}
         <div className="flex flex-col justify-center items-center w-1/2 p-16">
           <div className="flex flex-col items-start max-w-xl">
@@ -81,38 +82,25 @@ const Login = () => {
 
               <div className="space-y-6">
                 {/* Email Field */}
-                <div className="relative group">
-                  <Mail className="absolute left-4 top-4 text-gray-400 w-5 h-5 group-focus-within:text-cyan-400 transition-colors" />
-                  <input
-                    type="email"
-                    placeholder="Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-black/30 text-white rounded-xl border border-white/10 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none transition-all duration-300 placeholder-gray-400"
-                  />
-                </div>
+                <CustomInput
+                  showLeftIcon
+                  Icon={Search}
+                  type="email"
+                  placeholder="Your Email"
+                  value={email}
+                  onChange={setEmail}
+                />
 
                 {/* Password Field */}
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-4 text-gray-400 w-5 h-5 group-focus-within:text-cyan-400 transition-colors" />
-                  <input
-                    type={showPassword ? "text" : "password"}
+                  <CustomInput
+                    showLeftIcon
+                    Icon={Lock}
+                    type={"password"}
                     placeholder="Your Password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 bg-black/30 text-white rounded-xl border border-white/10 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none transition-all duration-300 placeholder-gray-400"
+                    onChange={setPassword}
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 text-gray-400 hover:text-cyan-400 transition-colors"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="w-5 h-5" />
-                    ) : (
-                      <Eye className="w-5 h-5" />
-                    )}
-                  </button>
                 </div>
 
                 {/* Remember Me & Forgot Password */}
@@ -167,7 +155,7 @@ const Login = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
       {/* Globe in bottom right corner */}
       <div className="fixed bottom-48  w-full h-80  pointer-events-none">
-        <GlobeDemo />
+        {GlobeBg}
       </div>
     </div>
   );
