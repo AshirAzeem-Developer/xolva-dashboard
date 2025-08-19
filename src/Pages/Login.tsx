@@ -8,10 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const GlobeBg = useMemo(() => GlobeDemo(), []);
-
-  return (
-    <div className="relative min-h-screen  w-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-      {/* Animated background particles */}
+  const AnimatedBackgroundParticles = useMemo(
+    () => (
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
           <div
@@ -26,6 +24,35 @@ const Login = () => {
           />
         ))}
       </div>
+    ),
+    []
+  );
+  const [isLoginHovered, setIsLoginHovered] = useState(false);
+
+  // Define the inline style object for the button
+  const buttonStyle = {
+    // These properties are always applied
+    width: "100%",
+    paddingTop: "0.75rem", // py-3
+    paddingBottom: "0.75rem", // py-3
+    borderRadius: "0.5rem", // rounded-lg
+    fontWeight: "600", // font-semibold
+    color: "white", // text-white
+    background:
+      "linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to))",
+    "--tw-gradient-from": "#38bdf8", // from-cyan-400
+    "--tw-gradient-to": "#2563eb", // to-blue-600
+
+    // Transition properties for the zoom effect
+    transition: "transform 0.2s ease-in-out",
+
+    // Conditional transform based on hover state
+    transform: isLoginHovered ? "scale(1.05)" : "scale(1)",
+  };
+
+  return (
+    <div className="relative min-h-screen  w-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+      {AnimatedBackgroundParticles}
 
       <div className="flex flex-col sm:flex-row w-full h-screen relative z-10">
         {/* Left Section */}
@@ -84,7 +111,7 @@ const Login = () => {
                 {/* Email Field */}
                 <CustomInput
                   showLeftIcon
-                  Icon={Search}
+                  Icon={Mail}
                   type="email"
                   placeholder="Your Email"
                   value={email}
@@ -128,7 +155,9 @@ const Login = () => {
                       rememberMe,
                     })
                   }
-                  className="w-full py-3 rounded-lg font-semibold text-black bg-gradient-to-r from-cyan-400 to-blue-600 hover:scale-105 transition"
+                  onMouseEnter={() => setIsLoginHovered(true)}
+                  onMouseLeave={() => setIsLoginHovered(false)}
+                  style={buttonStyle}
                 >
                   Log In
                 </button>
