@@ -1,7 +1,7 @@
-import { Eye, EyeOff, LucideIcon, LucideProps } from "lucide-react";
-import React, { JSX, useState } from "react";
+import { Eye, EyeOff, LucideIcon } from "lucide-react";
+import React, { useState } from "react";
 
-type inputProps = {
+type InputProps = {
   showLeftIcon: boolean;
   Icon: LucideIcon;
   type: string;
@@ -11,10 +11,10 @@ type inputProps = {
   onChange: (value: string) => void;
 };
 
-const CustomInput: React.FC<inputProps> = ({
+const CustomInput: React.FC<InputProps> = ({
   type,
   placeholder,
-  className,
+  className = "",
   onChange,
   Icon,
   showLeftIcon,
@@ -28,6 +28,7 @@ const CustomInput: React.FC<inputProps> = ({
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
+
   return (
     <div className={`relative group ${className}`}>
       {showLeftIcon && (
@@ -43,7 +44,8 @@ const CustomInput: React.FC<inputProps> = ({
         } py-4 bg-black/30 text-white rounded-xl border border-white/10 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none transition-all duration-300 placeholder-gray-400`}
       />
       {isPasswordType && (
-        <div
+        <button
+          type="button"
           className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-cyan-400 transition-colors"
           onClick={togglePasswordVisibility}
         >
@@ -52,7 +54,7 @@ const CustomInput: React.FC<inputProps> = ({
           ) : (
             <EyeOff className="w-5 h-5" />
           )}
-        </div>
+        </button>
       )}
     </div>
   );
