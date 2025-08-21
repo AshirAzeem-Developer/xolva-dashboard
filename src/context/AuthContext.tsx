@@ -6,7 +6,6 @@ import {
   LoginCredentials,
   RegisterData,
 } from "../types/auth";
-import { useNavigate } from "react-router-dom";
 
 export const MOCK_USERS = [
   {
