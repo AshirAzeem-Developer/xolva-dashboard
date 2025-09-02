@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Login from "../../Pages/Login";
 import { Home } from "../../Pages/Home";
+import Todo from "../../Pages/Todo";
 
 // Auth Wrapper Component
 export const AuthWrapper: React.FC = () => {
@@ -33,4 +34,5 @@ export const AuthWrapper: React.FC = () => {
 
   // Show protected content if authenticated
   return <Home />;
+  // return <Todo />;
 };
